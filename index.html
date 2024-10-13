@@ -1,33 +1,79 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<style type="text/css">
 		@media print {
 			html {
 				font-size: 10px;
 			}
+			.toggle-expand {
+				display: none;
+			}
 		}
-		.underline-dashed {
+		.expanded-content {
+			font-style: italic;
+			color: #619090;
+		}
+		.collapsed-content {
+			cursor: pointer;
 			text-decoration-line: underline;
 			text-decoration-style: dashed;
 			text-decoration-color: darkgray;
 		}
+		.additional-content {
+            display: none;
+        }
 	</style>
+	<script type="text/javascript">
+		function initExpand() {
+			let $dynamicContents = $('.dynamic-content')
+
+			$dynamicContents.each(function() {
+                let titleText = $(this).attr('title')
+                let placeHolder = $(this).text()
+                $(this).addClass('collapsed-content')
+                $(this).after(`<span class="additional-content">${placeHolder} <span class="expanded-content">${titleText}</span></span>`)
+            })
+		}
+
+		function toggleExpand() {
+			let isExpanded = $('.toggle-expand').text() == '(summary)'
+            $('.toggle-expand').text(isExpanded ? '(expand)' : '(summary)')
+            $('.additional-content').toggle()
+            $('.dynamic-content').toggle()
+            let url = new URL(window.location)
+  			url.searchParams.set('detailed', !isExpanded)
+  			history.pushState(null, '', url);
+		}
+
+        $(document).ready(function() {
+        	initExpand()
+        	let params = new URLSearchParams(window.location.search)
+        	if (params.get('detailed') === 'true') toggleExpand()
+
+            $('.toggle-expand').on('click', toggleExpand)
+        })
+	</script>
 </head>
 <body>
 	<div class="container text-left">
 		<div class="row border-bottom">
-			<div class="col-9">
+			<div class="col-4">
 				<h1 class="display-2 fw-bold">
 					Tamás<br/>
 					Faragó
 				</h1>
 			</div>
+			<div class="col-5 mt-auto">
+				content-rich version here: <a href="https://darkvater.github.io/?detailed=true">https://darkvater.github.io/</a> <span class="collapsed-content toggle-expand" title="click here to toggle additional info">(expand)</span>
+			</div>
 			<div class="col-3">
 				<div class="bi bi-cake2">&nbsp;18.09.1980</div>
 				<div class="bi bi-passport">&nbsp;Netherlands</div>
-				<div class="bi bi-credit-card-2-front">&nbsp;B-permit</div>
+				<div class="bi bi-credit-card-2-front">&nbsp;C-permit</div>
 				<div class="bi bi-geo-alt-fill">&nbsp;Zurich, Switzerland</div>
 				<div class="bi bi-person">&nbsp;Married</div>
 				<div class="bi bi-envelope">&nbsp;fafarago@gmail.com</div>
@@ -40,7 +86,9 @@
 					<div class="row mb-4">
 						<div class="col">
 							<h2 class="display-5 border-bottom border-3 border-dark bi bi-info">&nbsp;about</h2>
-							<div>Experienced agile developer with a very low pain threshold for manual processes. Technology is an enabler to help automate repetitive tasks, be it for production or testing purposes, not only for solving business challenges. Performs short iterative releases to deliver quickly by leaning heavily on TDD, BDD, and CI to ensure code quality and enable refactoring to ward off code rot. Firmly believes in full-stack feature development and the dev-ops model where ownership is given to developers to test, implement, release and support the product. As a lead and manager, gives a lot of space to team to develop the most suitable solutions. Constantly coaches/supports team especially around code design and writing good, meaningful and reusable tests.</div>
+							<h6>Dynamic Agile Developer with a Strong Focus on Automation and Continuous Improvement</h6>
+							<div>As an accomplished full-stack Agile Developer, I specialize in leveraging technology to streamline and automate manual processes, enhancing efficiency in both production and testing environments. I deliver value through short iterative releases, leveraging TDD, BDD, and CI to ensure high code quality and facilitate effective refactoring.</p>
+							As a leader and manager, I foster an environment that encourages my team to explore and implement optimal solutions while providing ongoing coaching and support, particularly in code design and the creation of meaningful, reusable tests. I advocate for full-stack feature development and embrace the DevOps model, empowering my team to take ownership of the entire product lifecycle — from testing and implementation to release and support. </div>
 						</div>
 					</div>
 					<div class="row mb-4">
@@ -56,8 +104,8 @@
 						<div class="col">
 							<h2 class="display-5 border-bottom border-3 border-dark bi bi-gear">&nbsp;technologies</h2>
 							<div>
-								It would not be very useful to list out everything I have used in my career. My view is that languages, libraries and technologies are tools to achieve a desired business outcome and should be chosen as appropriate. Current favourite combination is <i>Quarkus, Kotlin, Cucumber using IntelliJ and running on Gitlab pipelines</i>.</p>
-								I have, and had extensive experience in a multitude of <span class="underline-dashed" style="cursor: pointer;" title="Javascript, Java, Groovy, JRuby, Scala, C#, F#, C++, Pascal, Fortran, Assembly, Cuda, SQL, PL/SQL, shell scripting, HTML, XML, JSON, YAML, SASS, CSS etc.">languages</span>, libraries, both <span class="underline-dashed" style="cursor: pointer;" title="ReactJS, Vue.js, Backbone.js, Webpack, etc.">front-</span> and <span class="underline-dashed" style="cursor: pointer;" title="Quarkus, Spring/Spring Boot/Spring MVC, Guice, Jetty, Tomcat, Struts, Restlet, Play Framework, (Quick)FIX, JDBC/Hibernate/Spring JPA, Quartz, Sinatra, Oracle/Cassandra/H2/Mongo DB, Solr, Elastic, Voldemort, Redis, etc.">back-end</span>, <span class="underline-dashed" style="cursor: pointer;" title="Splunk, Airbrake, JMX, Gradle, Maven, Ant, CMake, Docker, Kubernetes, Eclipse, IntelliJ, Visual Studio, Gitlab, Bitbucket, TeamCity, JIRA, etc.">tools</span>, and of course <span class="underline-dashed" style="cursor: pointer;" title="JUnit, QUnit, Spock, Geb, Mocha, Mockito, JMock, KMock, AssertJ, Hamcrest, Fitnesse, Selenium, etc.">testing</span>.
+								Rather than listing every technology I've worked with, I believe in selecting languages, libraries and tools based on their ability to achieve specific business outcomes. Technologies should be chosen for their suitability to the task at hand. Currently, my preferred tech stack for webservices includes <i>Quarkus, Kotlin, and Cucumber, utilising IntelliJ and running within GitLab pipelines</i>.</p>
+								I have, and had extensive experience in a multitude of <span class="dynamic-content" title="(Javascript, Java, Groovy, JRuby, Scala, C#, F#, C++, C, Pascal, Fortran, Assembly, Cuda, SQL, PL/SQL, shell scripting, HTML, XML, JSON, YAML, SASS, CSS etc.)">languages</span>, frameworks, both <span class="dynamic-content" title="(ReactJS, Vue.js, Backbone.js, Webpack, etc.)">front-</span> and <span class="dynamic-content" title="(Quarkus, Spring/Spring Boot/Spring MVC, Guice, Jetty, Tomcat, Struts (2), Restlet, Play Framework, (Quick)FIX, JDBC/Hibernate/Spring JPA, Quartz, Sinatra, Oracle/Cassandra/H2/Mongo DB, Solr, Elastic, Voldemort, Redis, etc.)">back-end</span>, <span class="dynamic-content" title="(Splunk, Airbrake, JMX, Gradle, Maven, Ant, CMake, Docker, Kubernetes, Eclipse, IntelliJ, Visual Studio, Gitlab, Bitbucket, TeamCity, JIRA, etc.)">tools</span>, and of course many <span class="dynamic-content" title="(JUnit, QUnit, Spock, Geb, Mocha, Mockito, JMock, KMock, AssertJ, Hamcrest, Gherkin/Cucumber, Fitnesse, Selenium, etc.)">testing</span> suites.
 							</div>
 						</div>
 					</div>
@@ -68,7 +116,7 @@
 								<li>English: native</li>
 								<li>Dutch: native</li>
 								<li>Hungarian: native</li>
-								<li>German: conversational</li>
+								<li>German: conversational (B1/B2)</li>
 							</ul>
 						</div>
 					</div>
@@ -78,36 +126,38 @@
 			<div class="col-8">
 				<div class="row">
 					<h2 class="display-5 border-bottom border-3 border-dark bi bi-buildings">&nbsp;work experience</h2>
-					<h4>Credit Suisse 03.2012-Present</h4>
-					<div class="fw-bold">Switzerland - Vice President (Wealth Management) <i>06.2021-Present</i></div>
+					<h4>Credit Suisse/UBS 03.2012-Present</h4>
+					<h6>Switzerland - Vice President (Wealth Management) <i>06.2021-Present</i></h6>
 					<ul>
-						<li>Leading Regulatory Services Switzerland driving the transformation for a legacy suite of services into a modern technology stack, making fundamental improvements to the existing processes while also migrating and extending the strategic service offering. These services are at the centre of the pre-trade offering across both the Listed and OTC worlds and used by hundreds of Relationship Managers (RM), External Asset Managers (EAM), and Direct Access Clients (DAC), in- and outside of Switzerland. The performance and correct (explainable, auditable) behaviour of these services is crucial for the bank’s compliance towards regulators (FinMA). I work closely with the platform to ensure new requirements are architecturally sound and implemented in the appropriate systems while safeguarding current operations amidst severe budget and staffing cuts.</li>
-						<li>Completely transformed the platform from a poorly performing, constant management head-ache to a well-tested, reliable, traceable system with on-time delivery using a fraction of the resources.</li>
+						<li>I am leading Regulatory Services globally driving the modernisation of a legacy suite of services into a scalable technology stack, I implemented fundamental process improvements while extending the strategic <span class="dynamic-content" title="These services are at the centre of the pre-trade offering across both the Listed and OTC worlds and used by hundreds of Relationship Managers (RM), External Asset Managers (EAM), and Direct Access Clients (DAC), in- and outside of Switzerland. The performance and correct (explainable, auditable) behaviour is crucial for the bank’s compliance towards regulators (FinMA) and ensures clients are recommended products suitable for their profile/preferences.">service offering.</span> Collaborating closely with the platform team I ensure new requirements are architecturally sound and integrated seamlessly while maintaining current operations under tight budget and staffing constraints.</li>
+						<li>I have added automated CI/CD pipelines, enhanced system robustness by fixing and adding extensive feature and integration tests, allowing for the refactoring/rewriting of numerous critical <span class="dynamic-content" title="Most of the technology stack was rewritten from Java to Kotlin to leverage its advanced features including data classes, delegation, lambdas, and compile-time nullability checks. Where Kotlin was not feasible, I ensured Lombok support was added instead. Where heavy scripting - especially PL/SQL stored procedures - was used, I added tests, moved it under souce control, ensured validation and enabled automatic deployments.">functionalities.</span> Identified and resolved multiple concurrency and other hidden issues surfaced through testing automation, resulting in a smooth and reliable system performance.</li>
+						<li>In parallel I implemented a new microservice-based rule engine with a clear separation of data and business logic, utilizing an in-house built DSL. The solution is designed from the outset with auditability, traceability, replayability, performance, and cost-efficiency as core principles. Leveraging reactive programming frameworks in Quarkus, Mutiny Vert.x, Redis, and MongoDB implemented in Kotlin on OpenShift, I ensured the system was highly responsive and scalable. I built proxies safeguard existing APIs' functionality, allowing timely delivery of new features at the fraction of previously needed <span class="dynamic-content" title="Just as an example the timeline of integrating Sustainable Finance dropped from 6+ months to about 2 weeks including a 100% feature test coverage compared to barely any tests available previously.">resources.</span></li>
 					</ul>
-					<div class="fw-bold">Switzerland - Vice President (Investment Banking) <i>01.2020-06.2021</i></div>
+					<h6>Switzerland - Vice President (Investment Banking) <i>01.2020-06.2021</i></h6>
 					<ul>
-						<li>Leading the SpHere technology orchestration platform redefining structured products manufacturing and delivery. Responsible for building out a workflow engine connecting a multitude of applications focusing on designing and building services that are transparent, auditable and extensible. Influencing and supporting other teams, I have proactively taken on the migration of services owned by the Quants Engineers to unblock and drive forward the overall program. I worked closely with the team on the secondary trade offering and produced a service that was simpler, cleaner as well as resolving a number of legacy issues all detected through thorough reconciliation and testing.
+						<li>I lead the Structured Products Here (SpHere) technology orchestration platform redefining structured products manufacturing and delivery. Responsible for building out a workflow engine connecting a multitude of applications focusing on designing and building services that are transparent, auditable and extensible. Influencing and supporting other teams, I have proactively taken on the migration of services owned by Quants Engineers to unblock and drive forward the overall program. I worked closely with the quants on the secondary trade offering and produced a service that was simpler, cleaner, as well as resolving a number of legacy issues all detected through thorough reconciliation and testing.
 						</li>
 					</ul>
-					<div class="fw-bold">Switzerland – Vice President (special projects) <i>08.2019-01.2020</i></div>
+					<h6>Switzerland – Vice President (special projects) <i>08.2019-01.2020</i></h6>
 					<ul>
-						<li>Supporting various teams with essential, but non-core deliveries. This includes migrating C++ application suites to GIT, and creating a fully automated, auditable CMake dependency build system using Docker and Kubernetes. Additionally built a secondary market price publishing system to Reuters/Refinitiv.</li>
+						<li>Supporting various teams with essential, but non-core deliveries. This includes onboarding C++ application suites to GIT, and creating a fully automated, auditable CMake dependency build system using Docker and Kubernetes. Additionally built a secondary market price publishing system to Reuters/Refinitiv.</li>
 					</ul>
-					<div class="fw-bold">Hong Kong - Vice President (Equity Derivatives) <i>01.2017-08.2019</i></div>
+					<h6>Hong Kong - Vice President (Equity Derivatives) <i>01.2017-08.2019</i></h6>
 					<ul>
-						<li>Team lead for the Spirit Asia technology platform. Spirit is the Front Office Structured Products offering covering areas of pricing, price-matching/discovery and order execution/management with over 1500 active users across IB and PB and 500+ users from 15+ external clients in APAC with USD ~2.5 billion notional traded per year. Have delivered a multitude of features on the 14+ year old platform including support for additional markets, new product enhancements, cross-market basket execution, fine-grained access entitlements, platform technology upgrades, etc. with a small team of engineers. This is only possible because of firm guiding principles around clean code, test-driven development and rigorous automation.</li>
-						<li>Product owner of an in-house, audit-approved and automated release platform, used in EMEA, APAC. Responsible for book of work and prioritization to deliver highest value items first.</li>
+						<li>Team lead for the <span class="dynamic-content" title="Spirit is the Front Office Structured Products offering covering areas of pricing, price-matching/discovery and order execution/management with over 1500 active users across IB and PB and 500+ users from 15+ external clients in APAC with USD ~2.5 billion notional traded per year.">Spirit Asia technology platform.</span> I have delivered a multitude of features on the 14+ year old platform including support for additional markets, new product enhancements, cross-market basket execution, 3rd-party order execution (over email/FIX), fine-grained access entitlements, platform technology upgrades, etc. with a small team of engineers. This is only possible because of firm guiding principles around clean code, test-driven development and rigorous automation.</li>
+						<li>Product owner of an in-house, audit-approved and automated release platform, used in EMEA, APAC. Responsible for book of work, prioritization.</li>
+						<li>Since 2013, I have been deeply involved in lateral recruitment, conducting CV screening, interviews, and pair-programming sessions to ensure we hire individuals with the curious, technology-driven mindset needed to build exceptional systems.</li>
 					</ul>
-					<div class="fw-bold">Hong Kong - Assistant Vice President (Equity Derivatives) <i>05.2014-01.2017 (Contractor 03.2012-05.2014)</i></div>
+					<h6>Hong Kong - Assistant Vice President (Equity Derivatives) <i>05.2014-01.2017 (Contractor 03.2012-05.2014)</i></h6>
 					<ul>
-						<li>Primary SME and senior developer on the Spirit Asia technology platform (see above). Have built up a strong team to add 3rd-party order execution support over several channels (automated-email, FIX), such that Front Office staff can transparently execute orders with non-CS IBs and retain same STP functionality as with internal products. Invested heavily in automation, simplifying local development and technology upgrades.</li>
-						<li>Spearheaded effort to provide well-tested, standard, reusable components as drop-in dependencies for projects to reduce code duplication. Examples of this are a single sign-on authentication module for Spring Boot, easy to use wrappers around apache http-component, jackson marshaller, recursive and expressive deep-equals assertion test util tool, gradle deployment plugin, etc.</li>
-						<li>Improved productivity by creating tool for team to easily and quickly manage SCRUM board by using JIRA's RESTful APIs to provide non-obtrusive light-touch async JIRA item management sharing with wider department</li>
-						<li>Ran graduate recruitment and TA programs from 2014-2016 across all of GM APAC IT, involved in lateral recruitment 2013 onwards on cv-screening, interviews and programming sessions.</li>
+						<li>Primary SME and senior developer on the Spirit Asia technology platform (<span class="dynamic-content" title="- also I have built up a strong team to add 3rd-party order execution support over several channels (automated-email, FIX), such that Front Office staff can transparently execute orders with non-CS IBs and retain same STP functionality as with internal products. Invested heavily in automation, simplifying local development and technology upgrades">see above</span>).</li>
+						<li>Personally created well-tested, standard, reusable components as drop-in dependencies for projects to reduce code duplication. Examples of this are a single sign-on authentication module for Spring Boot, recursive and expressive deep-equals assertion test util tools, gradle deployment plugin, easy to use wrappers around apache http-component, jackson marshaller, etc.</li>
+						<li>Improved productivity by creating tool for our department to easily and quickly manage SCRUM board by using JIRA's RESTful APIs to provide non-obtrusive light-touch async JIRA item management.</li>
+						<li>Ran graduate recruitment and TA programs from 2014-2016 across all of GM APAC IT</li>
 					</ul>
 					<h4>The Netherlands 2001-03.2012</h4>
 					<ul>
-						<li>Various software engineering and research positions, including tech company (<a href="https://www.topdesk.com/nl/" target="_blank">TOPdesk</a>), medical research (<a href="https://www.lumc.nl/" target="_blank">Leids Universitair Medical Centre</a>), co-owner of a neuroscience tech startup (Rennaochines), Data Analyst (Shell SAMCo), open source gaming enthousiast (<span class="bi bi-signpost-2-fill">&nbsp;<a href="https://www.openttd.org" title="the most amazing open source simulation game based upon Transport Tycoon Deluxe" target="_blank">OpenTTD</a></span> dev-lead), etc.</li>
+						<li>Various software engineering and research positions, including tech company (<a href="https://www.topdesk.com/nl/" target="_blank">TOPdesk</a>), medical research (<a href="https://www.lumc.nl/" target="_blank">Leids Universitair Medical Centre</a>), co-owner of a neuroscience tech startup (Rennaochines), Data Analyst (Shell SAMCo), open source gaming enthousiast (<span class="bi bi-signpost-2-fill">&nbsp;<a href="https://www.openttd.org" title="the most amazing open source simulation game based upon Transport Tycoon Deluxe" target="_blank">OpenTTD</a></span> C/C++ dev-lead for 4 years).</li>
 					</ul>
 				</div>
 			</div>
