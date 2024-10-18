@@ -40,8 +40,8 @@
 		}
 
 		function toggleExpand() {
-			let isExpanded = $('.toggle-expand').text() == '(summary)'
-            $('.toggle-expand').text(isExpanded ? '(expand)' : '(summary)')
+			let isExpanded = $('.toggle-expand').text() == '(less details)'
+            $('.toggle-expand').text(isExpanded ? '(more details)' : '(less details)')
             $('.additional-content').toggle()
             $('.dynamic-content').toggle()
             let url = new URL(window.location)
@@ -59,7 +59,7 @@
 	</script>
 </head>
 <body>
-	<div class="container text-left">
+	<div class="container-lg text-left">
 		<div class="row border-bottom">
 			<div class="col-4">
 				<h1 class="display-2 fw-bold">
@@ -68,16 +68,16 @@
 				</h1>
 			</div>
 			<div class="col-5 mt-auto">
-				content-rich version here: <a href="https://darkvater.github.io/?detailed=true">https://darkvater.github.io/</a> <span class="collapsed-content toggle-expand" title="click here to toggle additional info">(expand)</span>
+				content-rich version here: <a href="https://darkvater.github.io/?detailed=true">https://darkvater.github.io/</a> <span class="collapsed-content toggle-expand" title="click here to toggle additional info">(more details)</span>
 			</div>
 			<div class="col-3">
-				<div class="bi bi-cake2">&nbsp;18.09.1980</div>
-				<div class="bi bi-passport">&nbsp;Netherlands</div>
-				<div class="bi bi-credit-card-2-front">&nbsp;C-permit</div>
-				<div class="bi bi-geo-alt-fill">&nbsp;Zurich, Switzerland</div>
-				<div class="bi bi-person">&nbsp;Married</div>
-				<div class="bi bi-envelope">&nbsp;fafarago@gmail.com</div>
-				<div class="bi bi-telephone">&nbsp;+41 76 297 62 83</div>
+				<div class="bi bi-cake2" title="date of birth">&nbsp;18.09.1980</div>
+				<div class="bi bi-passport" title="nationality">&nbsp;Netherlands</div>
+				<div class="bi bi-credit-card-2-front" title="Switzerland work permit">&nbsp;C-Ausweis</div>
+				<div class="bi bi-geo-alt-fill" title="location">&nbsp;Zurich, Switzerland</div>
+				<div class="bi bi-person" title="marital status">&nbsp;Married</div>
+				<div class="bi bi-envelope" title="email address">&nbsp;fafarago@gmail.com</div>
+				<div class="bi bi-telephone" title="phone number">&nbsp;+41 76 297 62 83</div>
 			</div>
 		</div>
 		<div class="row border-bottom">
@@ -87,7 +87,7 @@
 						<div class="col">
 							<h2 class="display-5 border-bottom border-3 border-dark bi bi-info">&nbsp;about</h2>
 							<h6>Dynamic Agile Developer with a Strong Focus on Automation and Continuous Improvement</h6>
-							<div>As an accomplished full-stack Agile Developer, I specialize in leveraging technology to streamline and automate manual processes, enhancing efficiency in both production and testing environments. I deliver value through short iterative releases, leveraging TDD, BDD, and CI to ensure high code quality and facilitate effective refactoring.</p>
+							<div>As an accomplished full-stack Agile Developer, I specialize in leveraging technology to deliver value by streamlining and automating manual processes, enhancing efficiency in both production and testing environments. I focus on business outcomes through short iterative releases, leveraging TDD, BDD, and CI to ensure high code quality and facilitate effective refactoring.</p>
 							As a leader and manager, I foster an environment that encourages my team to explore and implement optimal solutions while providing ongoing coaching and support, particularly in code design and the creation of meaningful, reusable tests. I advocate for full-stack feature development and embrace the DevOps model, empowering my team to take ownership of the entire product lifecycle — from testing and implementation to release and support. </div>
 						</div>
 					</div>
@@ -148,9 +148,9 @@
 						<li>Product owner of an in-house, audit-approved and automated release platform, used in EMEA, APAC. Responsible for book of work, prioritization.</li>
 						<li>Since 2013, I have been deeply involved in lateral recruitment, conducting CV screening, interviews, and pair-programming sessions to ensure we hire individuals with the curious, technology-driven mindset needed to build exceptional systems.</li>
 					</ul>
-					<h6>Hong Kong - Assistant Vice President (Equity Derivatives) <i>05.2014-01.2017 (Contractor 03.2012-05.2014)</i></h6>
+					<h6>Hong Kong - Assistant Vice President (Equity Derivatives) <i>03.2012-01.2017 (Contractor 03.2012-05.2014)</i></h6>
 					<ul>
-						<li>Primary SME and senior developer on the Spirit Asia technology platform (<span class="dynamic-content" title="- also I have built up a strong team to add 3rd-party order execution support over several channels (automated-email, FIX), such that Front Office staff can transparently execute orders with non-CS IBs and retain same STP functionality as with internal products. Invested heavily in automation, simplifying local development and technology upgrades">see above</span>).</li>
+						<li>Primary SME and senior developer on the Spirit Asia technology platform (<span class="dynamic-content" title="; additionally I have built up a strong team to add 3rd-party order execution support over several channels (automated-email, FIX), such that Front Office staff can transparently execute orders with non-CS IBs and retain same STP functionality as with internal products. Invested heavily in automation, simplifying local development and technology upgrades">see above</span>).</li>
 						<li>Personally created well-tested, standard, reusable components as drop-in dependencies for projects to reduce code duplication. Examples of this are a single sign-on authentication module for Spring Boot, recursive and expressive deep-equals assertion test util tools, gradle deployment plugin, easy to use wrappers around apache http-component, jackson marshaller, etc.</li>
 						<li>Improved productivity by creating tool for our department to easily and quickly manage SCRUM board by using JIRA's RESTful APIs to provide non-obtrusive light-touch async JIRA item management.</li>
 						<li>Ran graduate recruitment and TA programs from 2014-2016 across all of GM APAC IT</li>
@@ -163,9 +163,9 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col bi bi-github">&nbsp;<a href="https://github.com/Darkvater/" target="_blank">https://github.com/darkvater</a></div>
-			<div class="col bi bi-envelope">&nbsp;fafarago@gmail.com</span></div>
-			<div class="col bi bi-linkedin">&nbsp;<a href="https://www.linkedin.com/in/tamasfarago/" target="_blank">https://www.linkedin.com/in/tamasfarago</a></div>
+			<div class="col bi bi-github" title="github space">&nbsp;<a href="https://github.com/Darkvater/" target="_blank">https://github.com/darkvater</a></div>
+			<div class="col bi bi-envelope" title="email address">&nbsp;fafarago@gmail.com</span></div>
+			<div class="col bi bi-linkedin" title="linkedin page">&nbsp;<a href="https://www.linkedin.com/in/tamasfarago/" target="_blank">https://www.linkedin.com/in/tamasfarago</a></div>
 		</div>
 	</div>
 </div>
