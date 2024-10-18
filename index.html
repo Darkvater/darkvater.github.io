@@ -13,6 +13,11 @@
 				display: none;
 			}
 		}
+		@media screen {
+			.enriched-link {
+				display: none;
+			}
+		}
 		.expanded-content {
 			font-style: italic;
 			color: #619090;
@@ -40,8 +45,10 @@
 		}
 
 		function toggleExpand() {
-			let isExpanded = $('.toggle-expand').text() == '(less details)'
-            $('.toggle-expand').text(isExpanded ? '(more details)' : '(less details)')
+			let isExpanded = $('.toggle-expand span').text() == 'less details'
+            $('.toggle-expand span').text(isExpanded ? 'more details' : 'less details')
+            $('.toggle-expand .bi-arrows-angle-contract').toggle()
+            $('.toggle-expand .bi-arrows-angle-expand').toggle()
             $('.additional-content').toggle()
             $('.dynamic-content').toggle()
             let url = new URL(window.location)
@@ -59,7 +66,7 @@
 	</script>
 </head>
 <body>
-	<div class="container-lg text-left my-5">
+	<div class="container-lg text-start my-5">
 		<div class="row border-bottom">
 			<div class="col-4">
 				<h1 class="display-2 fw-bold">
@@ -68,24 +75,25 @@
 				</h1>
 			</div>
 			<div class="col-5 mt-auto">
-				content-rich version: <a href="https://darkvater.github.io/?detailed=true">https://darkvater.github.io/</a> <span class="collapsed-content toggle-expand" title="click here to toggle additional info">(more details)</span>
+				<span class="enriched-link">content-rich version: <a href="https://darkvater.github.io/?detailed=true">https://darkvater.github.io/</a></span>
+				<span class="collapsed-content toggle-expand" title="click here to toggle additional info"><i class="bi bi-arrows-angle-expand"></i><i class="bi bi-arrows-angle-contract" style="display: none"></i><span class="ms-1">more details</span>
 			</div>
 			<div class="col-3">
-				<div class="bi bi-cake2" title="date of birth">&nbsp;18.09.1980</div>
-				<div class="bi bi-passport" title="nationality">&nbsp;Netherlands</div>
-				<div class="bi bi-credit-card-2-front" title="Switzerland work permit">&nbsp;C-Ausweis</div>
-				<div class="bi bi-geo-alt-fill" title="location">&nbsp;Zurich, Switzerland</div>
-				<div class="bi bi-person" title="marital status">&nbsp;Married</div>
-				<div class="bi bi-envelope" title="email address">&nbsp;fafarago@gmail.com</div>
-				<div class="bi bi-telephone" title="phone number">&nbsp;+41 76 297 62 83</div>
+				<div title="date of birth"><i class="bi bi-cake2 me-1"></i>18.09.1980</div>
+				<div title="nationality"><i class="bi bi-passport me-1"></i>Netherlands</div>
+				<div title="Switzerland work permit"><i class="bi bi-credit-card-2-front me-1"></i>C-Ausweis</div>
+				<div title="location"><i class="bi bi-geo-alt-fill me-1"></i>Zurich, Switzerland</div>
+				<div title="marital status"><i class="bi bi-person me-1"></i>Married</div>
+				<div title="email address"><i class="bi bi-envelope me-1"></i>fafarago@gmail.com</div>
+				<div title="phone number"><i class="bi bi-telephone me-1"></i>+41 76 297 62 83</div>
 			</div>
 		</div>
 		<div class="row border-bottom">
 			<div class="col-4">
-				<div class="container text-left">
+				<div class="container text-start">
 					<div class="row mb-4">
 						<div class="col">
-							<h2 class="display-5 border-bottom border-3 border-dark bi bi-info">&nbsp;about</h2>
+							<h2 class="display-5 border-bottom border-3 border-dark"><i class="bi bi-info me-1"></i>about</h2>
 							<h6>Dynamic Agile Developer with a Strong Focus on Automation and Continuous Improvement</h6>
 							<div>As an accomplished full-stack Agile Developer, I specialize in leveraging technology to deliver value by streamlining and automating manual processes, enhancing efficiency in both production and testing environments. I focus on business outcomes through short iterative releases, leveraging TDD, BDD, and CI to ensure high code quality and facilitate effective refactoring.</p>
 							As a leader and manager, I foster an environment that encourages my team to explore and implement optimal solutions while providing ongoing coaching and support, particularly in code design and the creation of meaningful, reusable tests. I advocate for full-stack feature development and embrace the DevOps model, empowering my team to take ownership of the entire product lifecycle — from testing and implementation to release and support. </div>
@@ -93,7 +101,7 @@
 					</div>
 					<div class="row mb-4">
 						<div class="col">
-							<h2 class="display-5 border-bottom border-3 border-dark bi bi-bank">&nbsp;education</h2>
+							<h2 class="display-5 border-bottom border-3 border-dark"><i class="bi bi-bank me-1"></i>education</h2>
 							<ul>
 								<li>Leiden University, Computer Science M.Sc, <i>“A Framework For Heterogeneous Desktop Parallel Computing” 2006-2008</i></li>
 								<li>Leiden University, Computer Science B.Sc, <i>2000-2006</i></li>
@@ -102,7 +110,7 @@
 					</div>
 					<div class="row mb-4">
 						<div class="col">
-							<h2 class="display-5 border-bottom border-3 border-dark bi bi-gear">&nbsp;technology</h2>
+							<h2 class="display-5 border-bottom border-3 border-dark"><i class="bi bi-gear me-1"></i>technology</h2>
 							<div>
 								Rather than listing every technology I've worked with, I believe in selecting languages, libraries and tools based on their ability to achieve specific business outcomes. Technologies should be chosen for their suitability to the task at hand. Currently, my preferred tech stack for webservices includes <i>Quarkus, Kotlin, and Cucumber, utilising IntelliJ and running within GitLab pipelines</i>.</p>
 								I have, and had extensive experience in a multitude of <span class="dynamic-content" title="(Javascript, Java, Groovy, JRuby, Scala, C#, F#, C++, C, Pascal, Fortran, Assembly, Cuda, SQL, PL/SQL, shell scripting, HTML, XML, JSON, YAML, SASS, CSS etc.)">languages</span>, frameworks, both <span class="dynamic-content" title="(ReactJS, Vue.js, Backbone.js, Webpack, etc.)">front-</span> and <span class="dynamic-content" title="(Quarkus, Spring/Spring Boot/Spring MVC, Guice, Jetty, Tomcat, Struts (2), Restlet, Play Framework, (Quick)FIX, JDBC/Hibernate/Spring JPA, Quartz, Sinatra, Oracle/Cassandra/H2/Mongo DB, Solr, Elastic, Voldemort, Redis, etc.)">back-end</span>, <span class="dynamic-content" title="(Splunk, Airbrake, JMX, Gradle, Maven, Ant, CMake, Docker, Kubernetes, Eclipse, IntelliJ, Visual Studio, Gitlab, Bitbucket, TeamCity, JIRA, etc.)">tools</span>, and of course many <span class="dynamic-content" title="(JUnit, QUnit, Spock, Geb, Mocha, Mockito, JMock, KMock, AssertJ, Hamcrest, Gherkin/Cucumber, Fitnesse, Selenium, etc.)">testing</span> suites.
@@ -111,7 +119,7 @@
 					</div>
 					<div class="row mb-4">
 						<div class="col">
-							<h2 class="display-5 border-bottom border-3 border-dark bi bi-globe">&nbsp;languages</h2>
+							<h2 class="display-5 border-bottom border-3 border-dark"><i class="bi bi-globe me-1"></i>languages</h2>
 							<ul>
 								<li>English: native</li>
 								<li>Dutch: native</li>
@@ -125,7 +133,7 @@
 			</div>
 			<div class="col-8">
 				<div class="row">
-					<h2 class="display-5 border-bottom border-3 border-dark bi bi-buildings">&nbsp;work experience</h2>
+					<h2 class="display-5 border-bottom border-3 border-dark"><i class="bi bi-buildings me-1"></i>work experience</h2>
 					<h4>Credit Suisse/UBS 03.2012-Present</h4>
 					<h6>Switzerland - Vice President (Wealth Management) <i>06.2021-Present</i></h6>
 					<ul>
@@ -157,15 +165,15 @@
 					</ul>
 					<h4>The Netherlands 2001-03.2012</h4>
 					<ul>
-						<li>Various software engineering and research positions, including tech company (<a href="https://www.topdesk.com/nl/" target="_blank">TOPdesk</a>), medical research (<a href="https://www.lumc.nl/" target="_blank">Leids Universitair Medical Centre</a>), co-owner of a neuroscience tech startup (Rennaochines), Data Analyst (Shell SAMCo), open source gaming enthousiast (<span class="bi bi-signpost-2-fill">&nbsp;<a href="https://www.openttd.org" title="the most amazing open source simulation game based upon Transport Tycoon Deluxe" target="_blank">OpenTTD</a></span> C/C++ dev-lead for 4 years).</li>
+						<li>Various software engineering and research positions, including tech company (<a href="https://www.topdesk.com/nl/" target="_blank">TOPdesk</a>), medical research (<a href="https://www.lumc.nl/" target="_blank">Leids Universitair Medical Centre</a>), co-owner of a neuroscience tech startup (Rennaochines), Data Analyst (Shell SAMCo), open source gaming enthousiast (<i class="bi bi-signpost-2-fill me-1"></i><a href="https://www.openttd.org" title="the most amazing open source simulation game based upon Transport Tycoon Deluxe" target="_blank">OpenTTD</a> C/C++ dev-lead for 4 years).</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col bi bi-github" title="github space">&nbsp;<a href="https://github.com/Darkvater/" target="_blank">https://github.com/darkvater</a></div>
-			<div class="col bi bi-envelope" title="email address">&nbsp;fafarago@gmail.com</span></div>
-			<div class="col bi bi-linkedin" title="linkedin page">&nbsp;<a href="https://www.linkedin.com/in/tamasfarago/" target="_blank">https://www.linkedin.com/in/tamasfarago</a></div>
+			<div class="col-4" title="github space"><i class="bi bi-github me-1"></i><a href="https://github.com/Darkvater/" target="_blank">https://github.com/darkvater</a></div>
+			<div class="col-3" title="email address"><i class="bi bi-envelope me-1"></i>fafarago@gmail.com</span></div>
+			<div class="col-5 text-end" title="linkedin page"><i class="bi bi-linkedin me-1"></i><a href="https://www.linkedin.com/in/tamasfarago/" target="_blank">https://www.linkedin.com/in/tamasfarago</a></div>
 		</div>
 	</div>
 </div>
