@@ -54,7 +54,7 @@
             $('.toggle-expand span').text(isExpanded ? 'show more' : 'show less')
             $('.toggle-expand .bi-arrows-angle-contract').toggle()
             $('.toggle-expand .bi-arrows-angle-expand').toggle()
-            $('.additional-content').toggle()
+            $('.additional-content').toggle(500)
             $('.dynamic-content').toggle()
             let url = new URL(window.location)
   			url.searchParams.set('detailed', !isExpanded)
@@ -80,8 +80,8 @@
 				</h1>
 			</div>
 			<div class="col-5 mt-auto">
-				<span class="enriched-link">content-rich version: <a href="https://darkvater.github.io/?detailed=true">https://darkvater.github.io/</a></span>
-				<span class="collapsed-content toggle-expand" title="click here to toggle additional info"><i class="bi bi-arrows-angle-expand"></i><i class="bi bi-arrows-angle-contract" style="display: none"></i><span class="ms-1"></span>
+				<span class="enriched-link">content-rich version: <a href="https://darkvater.github.io">https://darkvater.github.io/</a></span>
+				<span class="badge text-bg-warning mb-1 collapsed-content toggle-expand" title="click here to toggle between a more detailed or condensed version of the resume"><i class="bi bi-arrows-angle-expand"></i><i class="bi bi-arrows-angle-contract" style="display: none"></i><span class="ms-1"></span>
 			</div>
 			<div class="col-3">
 				<div title="date of birth"><i class="bi bi-cake2 me-1"></i>18.09.1980</div>
